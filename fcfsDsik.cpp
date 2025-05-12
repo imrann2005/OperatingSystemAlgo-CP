@@ -1,31 +1,31 @@
-#include<iostream>
+#include <iostream>
+#include <math.h>
 
 using namespace std;
 
-int main(){
+int main()
+{
     int n;
-    cout<<"Enter The Size of Request List\n";
-    cin>>n;
-    int a[n];
+    cout << "Enter Request List Size\n";
+    cin >> n;
+    int req[n];
     for (int i = 0; i < n; i++)
     {
-        cout<<"Enter Request at index : "<<i<<endl;
-        cin >> a[i];
+        cout << "Enter Request " << i << " \n";
+        cin >> req[i];
     }
     int head;
-    cout<<"Enter initial head position\n";
-    cin>>head;
-
-    int total = 0;
-
+    cout << "Enter Initial Head Position\n";
+    cin >> head;
+    int curr = head;
+    int t = 0;
     for (int i = 0; i < n; i++)
     {
-        total += abs(a[i]-head);
-        head = a[i];
-        cout<<"Current Head After Request "<<i<<" "<<head<<endl;
-    }
-    
-    cout<<"Total Head Movement\n"<<total<<endl;
+        t += abs(curr - req[i]);
+        curr = req[i];
+        cout<<"Head Position After Request "<<i+1<<" "<<curr<<endl;
 
+    }
+    cout<<"Total Displacement "<<t<<endl;
     return 0;
 }
