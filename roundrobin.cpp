@@ -14,6 +14,7 @@ struct p
     int tat;
     int wt;
     int rt;
+    int start_time;
 }p[4];
 
 
@@ -31,37 +32,36 @@ int main(){
         p[i].rbt = p[i].bt;
     }
     int t = 0;
-    while (1)
+    int d = 0;
+    int c = 0;
+    while (c<4)
     {
-        /* code */
-        int d = 1;
+        d = 0;
         for (int i = 0; i < 4; i++)
         {
-            if(p[i].rbt > 0 && p[i].at <= t){
-                d = 0;
+            if(p[i].at <= t && p[i].rbt > 0){
+                d = 1;
+                if(p[i].rbt == p[i].bt){
+                    p[i].start_time = t;
+                }
                 if(p[i].rbt > q){
+                    p[i].rbt -=  q;
                     t += q;
-                    p[i].rbt -= q;
                 }
                 else{
                     t += p[i].rbt;
                     p[i].rbt = 0;
+                    c++;
                     p[i].ct = t;
+                    p[i].tat = p[i].ct - p[i].at;
+                    p[i].wt = p[i].tat - p[i].bt;
+                    p[i].rt = p[i].start_time - p[i].at;
                 }
             }
-            
         }
+        if(d==0)t++;
+    }
 
-        if(d){
-            break;
-        }
-        
-    }
-    for (int i = 0; i < 4; i++)
-    {
-        p[i].tat = p[i].ct - p[i].at;
-        p[i].wt = p[i].tat - p[i].bt;
-    }
     cout<<"\nP ID\tAt\tBt\tCt\tTat\tWt\t\n";
     for (int i = 0; i < 4; i++)
     {

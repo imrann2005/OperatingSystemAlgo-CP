@@ -26,20 +26,16 @@ int main(){
         cin>>p[i].bt;
 
     }
-
+    //Sort by At
     for (int i = 0; i < 5; i++)
     {
         /* code */
         if(i==0){
-            p[i].st = p[i].at;
+            p[i].ct = p[i].at + p[i].bt;
         }
         else{
-            if(p[i-1].ct < p[i].at){
-                p[i].st = p[i].at;
-            }
-            else p[i].st = p[i-1].ct;
+            p[i].ct = max(p[i].at,p[i-1].ct) + p[i].bt;
         }
-        p[i].ct = p[i].st + p[i].bt;
         p[i].tat = p[i].ct - p[i].at;
         p[i].wt = p[i].tat - p[i].bt;
         p[i].rt = p[i].wt;
